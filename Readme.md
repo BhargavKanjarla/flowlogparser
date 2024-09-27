@@ -14,13 +14,13 @@ This Java program parses flow log data, maps each row to a tag based on a lookup
 Compile the Java files:
 
 ```
-javac -d out *.java
+javac -d out src/main/java/com/flowlog/**/*.java  
 ```
 
 Run the program:
 
 ```
-java FlowLogParser <flow_log_file> <lookup_file> <output_file>
+java -cp out:src src/main/java/com/flowlog/analyzer/FlowLogAnalyzer <flow_log_file> <lookup_file> <output_file>
 ```
 
 Replace `<flow_log_file>`, `<lookup_file>`, and `<output_file>` with the appropriate file paths.
@@ -28,7 +28,7 @@ Replace `<flow_log_file>`, `<lookup_file>`, and `<output_file>` with the appropr
 Example for program:
 
 ```
- java -cp out FlowLogParser input/filelogs.txt input/lookup_file.txt output/output_file.txt
+java -cp out:src src/main/java/com/flowlog/analyzer/FlowLogAnalyzer input/filelogs.txt input/lookup_file.txt output/output_file.txt
 
 ```
 

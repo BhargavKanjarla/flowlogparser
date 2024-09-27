@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class FlowLogReader {
     private static final Logger LOGGER = Logger.getLogger(FlowLogReader.class.getName());
-    private static final String PROTOCOL_CSV_FILE = "src/resources/protocols.csv";
+    private static final String PROTOCOL_CSV_FILE = "resources/protocols.csv";
 
     private final String filename;
     private final Map<String, String> protocolMap;
@@ -43,7 +43,7 @@ public class FlowLogReader {
             while ((line = reader.readLine()) != null) {
                 if (isFirstLine) {
                     isFirstLine = false;
-                    continue; // Skipping the header line
+                    continue;
                 }
                 String[] parts = line.split(",");
                 if (parts.length >= 2) {
