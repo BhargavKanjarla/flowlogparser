@@ -20,7 +20,7 @@ javac -d out src/main/java/com/flowlog/**/*.java
 Run the program:
 
 ```
-java -cp out:src src/main/java/com/flowlog/analyzer/FlowLogAnalyzer <flow_log_file> <lookup_file> <output_file>
+java -cp out:src src/main/java/com/flowlog/analyzer/FlowLogAnalyzer <flow_log_file> <lookup_file> <output_prefix>
 ```
 
 Replace `<flow_log_file>`, `<lookup_file>`, and `<output_file>` with the appropriate file paths.
@@ -28,7 +28,7 @@ Replace `<flow_log_file>`, `<lookup_file>`, and `<output_file>` with the appropr
 Example for program:
 
 ```
-java -cp out:src src/main/java/com/flowlog/analyzer/FlowLogAnalyzer input/filelogs.txt input/lookup_file.txt output/output_file.txt
+java -cp out:src src/main/java/com/flowlog/analyzer/FlowLogAnalyzer input/filelogs.txt input/lookup_file.txt output/output
 
 ```
 

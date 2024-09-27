@@ -2,6 +2,7 @@ Port,Protocol,Count
 23,tcp,1
 993,tcp,1
 80,tcp,1
+314,udp,1
 25,tcp,4
 49157,tcp,1
 443,tcp,1
@@ -11,6 +12,7 @@ Port,Protocol,Count
 49158,tcp,1
 143,tcp,1
 49156,tcp,1
-0,icmp,1
+31,udp,1
+0,icmp,2
 49154,tcp,1
 1024,tcp,1
