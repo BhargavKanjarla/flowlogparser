@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
 public class TagMapper {
     private final LookupTable lookupTable;
 
-    public TagMapper(LookupTable lookupTable) {
+    public TagMapper(final LookupTable lookupTable) {
         this.lookupTable = lookupTable;
     }
 
-    public List<TaggedFlowLogEntry> mapTags(List<FlowLogEntry> entries) {
+    public List<TaggedFlowLogEntry> mapTags(final List<FlowLogEntry> entries) {
         return entries.stream()
                 .map(entry -> new TaggedFlowLogEntry(entry, lookupTable.getTag(entry.getDstPort(), entry.getProtocol())))
                 .collect(Collectors.toList());

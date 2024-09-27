@@ -23,42 +23,40 @@ public class FlowLogAnalyzer {
             System.exit(1);
         }
 
-        String flowLogFile = args[0];
-        String lookupFile = args[1];
-        String outputPrefix = args[2];
+        final String flowLogFile = args[0];
+        final String lookupFile = args[1];
+        final String outputPrefix = args[2];
 
         try {
             LOGGER.info("Initializing LookupTable with file: " + lookupFile);
-            LookupTable lookupTable = new LookupTable(lookupFile);
+            final LookupTable lookupTable = new LookupTable(lookupFile);
 
             LOGGER.info("Initializing FlowLogReader with file: " + flowLogFile);
-            FlowLogReader flowLogReader = new FlowLogReader(flowLogFile);
+            final FlowLogReader flowLogReader = new FlowLogReader(flowLogFile);
 
             LOGGER.info("Reading flow log entries");
-            List<FlowLogEntry> entries = flowLogReader.readEntries();
+            final List<FlowLogEntry> entries = flowLogReader.readEntries();
             LOGGER.info("Read " + entries.size() + " flow log entries");
 
             LOGGER.info("Mapping tags to entries");
-            TagMapper tagMapper = new TagMapper(lookupTable);
-            List<TaggedFlowLogEntry> taggedEntries = tagMapper.mapTags(entries);
+            final TagMapper tagMapper = new TagMapper(lookupTable);
+            final List<TaggedFlowLogEntry> taggedEntries = tagMapper.mapTags(entries);
 
             LOGGER.info("Generating statistics");
-            StatisticsGenerator statisticsGenerator = new StatisticsGenerator();
-            Map<String, Integer> tagCounts = statisticsGenerator.generateTagCounts(taggedEntries);
-            Map<String, Integer> portProtocolCounts = statisticsGenerator.generatePortProtocolCounts(entries);
+            final StatisticsGenerator statisticsGenerator = new StatisticsGenerator();
+            final Map<String, Integer> tagCounts = statisticsGenerator.generateTagCounts(taggedEntries);
+            final Map<String, Integer> portProtocolCounts = statisticsGenerator.generatePortProtocolCounts(entries);
 
             LOGGER.info("Generating reports with prefix: " + outputPrefix);
-            ReportGenerator reportGenerator = new ReportGenerator(outputPrefix);
+            final ReportGenerator reportGenerator = new ReportGenerator(outputPrefix);
             reportGenerator.generateReport(tagCounts, portProtocolCounts);
 
             LOGGER.info("Processing complete. Results written to " + outputPrefix + "_tag_counter.csv and " + outputPrefix + "_port_protocol_combinations.csv");
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Error processing files: " + e.getMessage(), e);
-            System.err.println("Error processing files: " + e.getMessage());
             e.printStackTrace();
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "An unexpected error occurred: " + e.getMessage(), e);
-            System.err.println("An unexpected error occurred: " + e.getMessage());
             e.printStackTrace();
         }
     }

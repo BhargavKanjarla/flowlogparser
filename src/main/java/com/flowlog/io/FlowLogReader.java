@@ -80,14 +80,14 @@ public class FlowLogReader {
         }
     }
 
-    private FlowLogEntry parseLine(String line) {
-        String[] parts = line.split("\\s+");
+    private FlowLogEntry parseLine(final String line) {
+        final String[] parts = line.split("\\s+");
         if (parts.length < 7) {
             LOGGER.warning("Invalid line in flow log: " + line);
             return null;
         }
-        String dstPort = parts[6];
-        String protocol = protocolMap.getOrDefault(parts[7], "UNKNOWN");
+        final String dstPort = parts[6];
+        final String protocol = protocolMap.getOrDefault(parts[7], "UNKNOWN");
         return new FlowLogEntry(dstPort, protocol);
     }
 }

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class StatisticsGenerator {
     public Map<String, Integer> generateTagCounts(final List<TaggedFlowLogEntry> entries) {
-        Map<String, Integer> map = new HashMap<>();
+        final Map<String, Integer> map = new HashMap<>();
         for (TaggedFlowLogEntry entry : entries) {
             map.merge(entry.getTag(), 1, Integer::sum);
         }

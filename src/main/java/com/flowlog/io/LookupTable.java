@@ -16,7 +16,7 @@ public class LookupTable {
     private static final Logger LOGGER = Logger.getLogger(LookupTable.class.getName());
     private final Map<String, String> lookupMap;
 
-    public LookupTable(String filename) throws IOException {
+    public LookupTable(final String filename) throws IOException {
         Path path = Paths.get(filename);
         validateFile(path);
         this.lookupMap = loadLookupTable(path);
@@ -33,7 +33,7 @@ public class LookupTable {
         }
     }
 
-    private Map<String, String> loadLookupTable(Path path) throws IOException {
+    private Map<String, String> loadLookupTable(final Path path) throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             return reader.lines()
                     .skip(1)
@@ -51,15 +51,15 @@ public class LookupTable {
         }
     }
 
-    private String[] parseLine(String line) {
-        String[] parts = line.split(",");
+    private String[] parseLine(final String line) {
+        final String[] parts = line.split(",");
         if (parts.length != 3) {
             LOGGER.warning("Invalid line in lookup table: " + line);
         }
         return parts;
     }
 
-    public String getTag(String dstPort, String protocol) {
+    public String getTag(final String dstPort, final String protocol) {
         if (dstPort == null || protocol == null) {
             LOGGER.warning("Null destination port or protocol");
             return "Untagged";
