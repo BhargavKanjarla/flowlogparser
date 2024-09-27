@@ -28,15 +28,12 @@ public class FlowLogAnalyzer {
         final String outputPrefix = args[2];
 
         try {
-            LOGGER.info("Initializing LookupTable with file: " + lookupFile);
             final LookupTable lookupTable = new LookupTable(lookupFile);
 
-            LOGGER.info("Initializing FlowLogReader with file: " + flowLogFile);
             final FlowLogReader flowLogReader = new FlowLogReader(flowLogFile);
 
             LOGGER.info("Reading flow log entries");
             final List<FlowLogEntry> entries = flowLogReader.readEntries();
-            LOGGER.info("Read " + entries.size() + " flow log entries");
 
             LOGGER.info("Mapping tags to entries");
             final TagMapper tagMapper = new TagMapper(lookupTable);
@@ -47,7 +44,6 @@ public class FlowLogAnalyzer {
             final Map<String, Integer> tagCounts = statisticsGenerator.generateTagCounts(taggedEntries);
             final Map<String, Integer> portProtocolCounts = statisticsGenerator.generatePortProtocolCounts(entries);
 
-            LOGGER.info("Generating reports with prefix: " + outputPrefix);
             final ReportGenerator reportGenerator = new ReportGenerator(outputPrefix);
             reportGenerator.generateReport(tagCounts, portProtocolCounts);
 
